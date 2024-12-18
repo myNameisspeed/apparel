@@ -19,7 +19,7 @@ public class CustomerController {
 
     @PostMapping("/createUser")
     public ResponseDTO createCustomer(@RequestBody CreateCustomerDTO createCustomerDTO){
-
+        System.out.println("createCustomerDTO "+createCustomerDTO);
         ResponseDTO createCustomer=customerService.createCustomer(createCustomerDTO);
 
        return null;

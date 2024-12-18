@@ -17,7 +17,7 @@ public class CustomerServiceImplementation implements CustomerService {
     @Override
     public ResponseDTO createCustomer(CreateCustomerDTO customer) {
 
-        System.out.println("customer "+ customer);
+        System.out.println("customer "+ customer.toString());
 
         return null;
     }

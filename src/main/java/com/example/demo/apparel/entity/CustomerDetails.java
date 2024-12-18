@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Customerdetail" , uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniqueKey"}))
