@@ -10,17 +10,18 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Customerdetail" , uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniqueKey"}))
-public class CustomerDetails {
 
+public class CustomerDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "uniqueKey", length = 40, nullable = false)
+    @Column(name = "uniqueKey", length = 40)
     private String uniqueKey;
 
     @Column(name = "customerName", nullable = false)
@@ -29,13 +30,13 @@ public class CustomerDetails {
     @Column(name = "mobileNumber" , nullable = false)
     private String mobileNumber;
 
-    @Column(name = "password" , nullable = false)
+    @Column(name = "password" )
     private String password=null;
 
     @Column(name ="createdBy",nullable = false)
     private Integer createdBy ;
 
-    @Column(name ="createdOn" ,nullable = false)
+    @Column(name ="createdOn" , nullable = false)
     private LocalDateTime createdOn ;
 
     @Column(name ="updatedBy")
