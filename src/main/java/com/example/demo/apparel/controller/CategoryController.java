@@ -4,7 +4,6 @@ package com.example.demo.apparel.controller;
 import com.example.demo.apparel.dto.CreateCategoryDTO;
 import com.example.demo.apparel.dto.ResponseDTO;
 import com.example.demo.apparel.service.CategoryService;
-import com.example.demo.apparel.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +20,6 @@ public class CategoryController {
 
     @PostMapping("/createCategory")
     public ResponseEntity<ResponseDTO> createCategory(@RequestBody CreateCategoryDTO createCategory){
-
         ResponseEntity<ResponseDTO> createCategoryDetails = categoryService.createCategoryDetails(createCategory);
         return  createCategoryDetails;
     }
