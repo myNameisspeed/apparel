@@ -38,7 +38,6 @@ public class ProductServiceImplementation implements ProductService {
 
     public CategoryAndSubcategoryMappping createCategoryAndSubcategoryMapping(String categoryId, String subCategoryID){
 
-
         Optional<CategoryAndSubcategoryMappping> categoryAndSubcategoryMapping;
         Optional<Category> category= categoryRepository.findByUniqueKeyAndIsDeleted(categoryId,0);
         Optional<Subcategory> subcategory=subcategoryRepository.findByUniqueKeyAndIsDeleted(subCategoryID,0);
@@ -49,9 +48,7 @@ public class ProductServiceImplementation implements ProductService {
         }
         else {
             CategoryAndSubcategoryMappping categoryAndSubcategoryMapppingObj=new CategoryAndSubcategoryMappping();
-
             categoryAndSubcategoryMapppingObj.setUniqueKey(UUID.randomUUID().toString());
-//           categoryAndSubcategoryMapppingObj.setCategory();
         }
         return null;
     }
