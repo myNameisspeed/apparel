@@ -8,4 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface CategoryAndSubcategoryMappingRepository extends JpaRepository<CategoryAndSubcategoryMappping,Integer> {
+   Optional<CategoryAndSubcategoryMappping> findByCategoryidAndSubcategoryidAndIsDeleted(String categoryId,String SubCategoryId,int isDeleted);
 }
