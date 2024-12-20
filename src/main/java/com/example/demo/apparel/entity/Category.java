@@ -48,4 +48,8 @@ public class Category {
     @Column(name ="isDeleted")
     private int isDeleted =0;
 
+//    @ManyToOne
+//    @JoinColumn(name = "categoryid" , nullable = false)
+//    private Category category;
+
 }
