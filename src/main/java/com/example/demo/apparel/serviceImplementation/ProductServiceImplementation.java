@@ -36,20 +36,21 @@ public class ProductServiceImplementation implements ProductService {
         return null;
     }
 
+    @Override
     public CategoryAndSubcategoryMappping createCategoryAndSubcategoryMapping(String categoryId, String subCategoryID){
 
         Optional<CategoryAndSubcategoryMappping> categoryAndSubcategoryMapping;
         Optional<Category> category= categoryRepository.findByUniqueKeyAndIsDeleted(categoryId,0);
         Optional<Subcategory> subcategory=subcategoryRepository.findByUniqueKeyAndIsDeleted(subCategoryID,0);
 
-        if(category.isPresent() && subcategory.isPresent()){
-            categoryAndSubcategoryMapping = categoryAndSubcategoryMappingRepository
-                    .findByCategoryidAndSubcategoryidAndIsDeleted(categoryId,subCategoryID,0);
-        }
-        else {
-            CategoryAndSubcategoryMappping categoryAndSubcategoryMapppingObj=new CategoryAndSubcategoryMappping();
-            categoryAndSubcategoryMapppingObj.setUniqueKey(UUID.randomUUID().toString());
-        }
+//        if(category.isPresent() && subcategory.isPresent()){
+//            categoryAndSubcategoryMapping = categoryAndSubcategoryMappingRepository
+//                    .findByCategoryAndSubcategoryAndIsDeleted(categoryId,subCategoryID,0);
+//        }
+//        else {
+//            CategoryAndSubcategoryMappping categoryAndSubcategoryMapppingObj=new CategoryAndSubcategoryMappping();
+//            categoryAndSubcategoryMapppingObj.setUniqueKey(UUID.randomUUID().toString());
+//        }
         return null;
     }
 
