@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface CategoryRepository extends JpaRepository<Category,Integer> {
 
     Optional<Category> findByUniqueKeyAndIsDeleted(String uniqueKey,int isDeleted);
+    Optional<Category> findByNameAndIsDeleted(String name,int isDeleted);
 
 }
