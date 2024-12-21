@@ -3,20 +3,17 @@ package com.example.demo.apparel.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Entity
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "category" , uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniqueKey"}))
-public class Category {
+@NoArgsConstructor
+@Entity
+@Table(name = "tbl_attachment",uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniqueKey"}))
+public class Attachment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,14 +22,24 @@ public class Category {
     @Column(name = "uniqueKey", length = 40, nullable = false)
     private String uniqueKey;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "entityTypeId", nullable = false)
+    private EntityType entityType;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "entityId", nullable = false)
+    private String entityId;
 
-    @Column(name ="isActive")
-    private int isActive =1;
+    @Column(name = "fileUuid", nullable = false)
+    private String fileUuid;
+
+    @Column(name = "mimeType", nullable = false)
+    private String mimeType;
+
+    @Column(name = "fileSize", nullable = false)
+    private String fileSize;
+
+    @Column(name = "coverImage", nullable = false)
+    private Integer coverImage;
 
     @Column(name ="createdBy",nullable = false)
     private Integer createdBy ;
@@ -49,6 +56,4 @@ public class Category {
     @Column(name ="isDeleted")
     private int isDeleted =0;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Subcategory> subcategories;
 }

@@ -8,5 +8,5 @@ import java.util.Optional;
 @Repository
 public interface CustomerDetailRepository extends JpaRepository<CustomerDetails,Integer> {
 
-    Optional<CustomerDetails> findByUniqueKeyAndIsDeleted(String uniquekey, int isDeleted);
+    Optional<CustomerDetails> findByUniqueKeyAndIsDeleted(String uniqueKey, int isDeleted);
 }
