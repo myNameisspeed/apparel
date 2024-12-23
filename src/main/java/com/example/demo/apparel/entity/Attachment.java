@@ -27,7 +27,7 @@ public class Attachment {
     private EntityType entityType;
 
     @Column(name = "entityId", nullable = false)
-    private String entityId;
+    private Integer entityId;
 
     @Column(name = "fileUuid", nullable = false)
     private String fileUuid;

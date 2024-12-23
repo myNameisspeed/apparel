@@ -3,7 +3,7 @@ package com.example.demo.apparel.serviceImplementation;
 import com.example.demo.apparel.dto.ProductInputDTO;
 import com.example.demo.apparel.dto.ResponseDTO;
 import com.example.demo.apparel.entity.Category;
-import com.example.demo.apparel.entity.CategoryAndSubcategoryMappping;
+import com.example.demo.apparel.entity.CategoryAndSubcategoryMapping;
 import com.example.demo.apparel.entity.Subcategory;
 import com.example.demo.apparel.repository.CategoryAndSubcategoryMappingRepository;
 import com.example.demo.apparel.repository.CategoryRepository;
@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class ProductServiceImplementation implements ProductService {
@@ -31,15 +30,15 @@ public class ProductServiceImplementation implements ProductService {
     @Override
     public ResponseEntity<ResponseDTO> createProductDetails(ProductInputDTO product) {
 
-        CategoryAndSubcategoryMappping categoryAndSubcategoryMapping =createCategoryAndSubcategoryMapping
+        CategoryAndSubcategoryMapping categoryAndSubcategoryMapping =createCategoryAndSubcategoryMapping
                 (product.getCategoryId(),product.getSubCategoryId());
         return null;
     }
 
     @Override
-    public CategoryAndSubcategoryMappping createCategoryAndSubcategoryMapping(String categoryId, String subCategoryID){
+    public CategoryAndSubcategoryMapping createCategoryAndSubcategoryMapping(String categoryId, String subCategoryID){
 
-        Optional<CategoryAndSubcategoryMappping> categoryAndSubcategoryMapping;
+        Optional<CategoryAndSubcategoryMapping> categoryAndSubcategoryMapping;
         Optional<Category> category= categoryRepository.findByUniqueKeyAndIsDeleted(categoryId,0);
         Optional<Subcategory> subcategory=subcategoryRepository.findByUniqueKeyAndIsDeleted(subCategoryID,0);
 
