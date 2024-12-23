@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -72,4 +73,7 @@ public class Vendor {
 
     @Column(name ="isDeleted")
     private int isDeleted =0;
+
+    @OneToMany(mappedBy ="vendor",cascade =  CascadeType.ALL, orphanRemoval = true)
+    private List<ProductDetail> productDetails;
 }

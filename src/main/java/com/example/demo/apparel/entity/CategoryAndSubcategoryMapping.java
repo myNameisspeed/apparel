@@ -10,24 +10,28 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tbl_core_category" , uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniqueKey"}))
-public class CoreCategory {
+@Table(name = "categoryandsubcategorymapping" , uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniqueKey"}))
+public class CategoryAndSubcategoryMapping {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy =GenerationType.IDENTITY )
     private Integer id;
 
     @Column(name = "uniqueKey", length = 40, nullable = false)
     private String uniqueKey;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "categoryid" , nullable = false)
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "subcategoryid" , nullable = false)
+    private Subcategory subcategory;
 
     @Column(name ="isActive")
     private int isActive =1;
@@ -47,6 +51,7 @@ public class CoreCategory {
     @Column(name ="isDeleted")
     private int isDeleted =0;
 
-    @OneToMany(mappedBy ="coreCategory",cascade =  CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "categoryAndSubcategoryMapping", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductDetail> productDetails;
+
 }

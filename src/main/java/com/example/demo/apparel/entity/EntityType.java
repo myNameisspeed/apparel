@@ -3,24 +3,22 @@ package com.example.demo.apparel.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-
-@Entity
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tbl_core_category" , uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniqueKey"}))
-public class CoreCategory {
+@NoArgsConstructor
+@Entity
+@Table(name = "tbl_entitytype",uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniqueKey"}))
 
+public class EntityType {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "uniqueKey", length = 40, nullable = false)
@@ -28,9 +26,6 @@ public class CoreCategory {
 
     @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name ="isActive")
-    private int isActive =1;
 
     @Column(name ="createdBy",nullable = false)
     private Integer createdBy ;
@@ -47,6 +42,7 @@ public class CoreCategory {
     @Column(name ="isDeleted")
     private int isDeleted =0;
 
-    @OneToMany(mappedBy ="coreCategory",cascade =  CascadeType.ALL, orphanRemoval = true)
-    private List<ProductDetail> productDetails;
+    @OneToMany(mappedBy ="entityType",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Attachment> attachments;
+
 }
