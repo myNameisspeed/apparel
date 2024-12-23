@@ -16,6 +16,7 @@ public interface SubcategoryRepository extends JpaRepository<Subcategory,Integer
     Optional<Subcategory> findByUniqueKeyAndIsDeleted(String uniqueKey,int isDeleted);
 
     @Modifying
-    @Query("UPDATE Subcategory c SET c.isDeleted=1 , c.isActive = 0 WHERE c.isDeleted=0 and c.categoryid =: categoryId ")
-    int UpdateSubCategoryByCategoryId(@Param("categoryId") Integer id);
+    @Query("UPDATE Subcategory c SET c.isDeleted=1 , c.isActive = 0 WHERE c.isDeleted=0 and c.category.id = :categoryId ")
+    int UpdateSubCategoryByCategoryId(@Param("categoryId") Integer categoryId);
+
 }

@@ -64,6 +64,7 @@ public class createCategoryDetailsImplementation implements CategoryService {
     @Override
     public ResponseEntity<ResponseDTO> createCategoryListDetails(CreateCategoryListDTO createCategoryList) {
         try {
+
             Optional<Category> categoryExist = categoryRepository.findByUniqueKeyAndIsDeleted(createCategoryList.getCategoryId(), 0);
             Optional<Category> categoryByName = categoryRepository.findByNameAndIsDeleted(createCategoryList.getCategoryName(), 0);
             Category category = new Category();
@@ -86,9 +87,9 @@ public class createCategoryDetailsImplementation implements CategoryService {
                     List<Integer> categoryAndSubcategoryMappingIds =
                             categoryAndSubcategoryMappingData.stream().map(CategoryAndSubcategoryMapping::getId).toList();
 
-                    Optional<ProductDetail> productDetailExistOrNot =
+                    Optional<List<ProductDetail>> productDetailExistOrNot =
                             productDetailsRepository.
-                                    findAllByCategoryAndSubcategoryMappingIdAndIsDeletedAndIsActive
+                                    findAllByCategoryAndSubcategoryMappingIdInAndIsDeletedAndIsActive
                                             (categoryAndSubcategoryMappingIds, 0, 1);
 
                     if (productDetailExistOrNot.isPresent()) {
@@ -99,7 +100,7 @@ public class createCategoryDetailsImplementation implements CategoryService {
                         int subCategoryDelete = subcategoryRepository.UpdateSubCategoryByCategoryId(categoryExist.get().getId());
                         int categoryAndSubCategoryDelete =
                                 categoryAndSubcategoryMappingRepository.
-                                        UpdateCategoryAndSubcategoryMappingByCategoryId(categoryExist.get().getId());
+                                        updateCategoryAndSubcategoryMappingByCategoryId(categoryExist.get().getId());
                     }
                     catch (Exception e){
                         return ResponseEntity.internalServerError().body(new ResponseDTO("Problem While Deletion"));

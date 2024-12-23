@@ -14,11 +14,11 @@ import java.util.Optional;
 @Repository
 public interface CategoryAndSubcategoryMappingRepository extends JpaRepository<CategoryAndSubcategoryMapping,Integer> {
 
-   Optional<CategoryAndSubcategoryMapping> findByCategoryAndSubcategoryAndIsDeleted(Category category, Subcategory SubCategoryId, int isDeleted);
    Optional<CategoryAndSubcategoryMapping> findByCategoryAndIsDeletedAndIsActive(Category category, int isDeleted,int isActive);
+
    @Modifying
-   @Query("UPDATE CategoryAndSubcategoryMapping c SET c.isDeleted=1 , c.isActive = 0 WHERE c.isDeleted=0 and c.categoryid= : categoryId ")
-   int UpdateCategoryAndSubcategoryMappingByCategoryId(@Param("categoryId") Integer id);
+   @Query("UPDATE CategoryAndSubcategoryMapping c SET c.isDeleted = 1, c.isActive = 0 WHERE c.isDeleted = 0 AND c.category.id = :categoryId")
+   int updateCategoryAndSubcategoryMappingByCategoryId(@Param("categoryId") Integer categoryId);
 
 
 }
