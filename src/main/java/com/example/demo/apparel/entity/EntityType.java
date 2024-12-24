@@ -13,16 +13,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tbl_entitytype",uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniqueKey"}))
+@Table(name = "tbl_entitytype",uniqueConstraints = @UniqueConstraint(columnNames = {"id"}))
 
 public class EntityType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-
-    @Column(name = "uniqueKey", length = 40, nullable = false)
-    private String uniqueKey;
 
     @Column(name = "name", nullable = false)
     private String name;
