@@ -8,4 +8,6 @@ import org.springframework.http.ResponseEntity;
 public interface CategoryService {
     ResponseEntity<ResponseDTO> createCategoryDetails(CreateCategoryDTO createCategory) ;
     ResponseEntity<ResponseDTO> createCategoryListDetails(CreateCategoryListDTO createCategoryList);
+
+    ResponseEntity<ResponseDTO> getCategoryService();
 }

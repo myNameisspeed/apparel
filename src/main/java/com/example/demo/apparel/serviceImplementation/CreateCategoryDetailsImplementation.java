@@ -16,10 +16,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
-public class createCategoryDetailsImplementation implements CategoryService {
+public class CreateCategoryDetailsImplementation implements CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
@@ -185,6 +184,30 @@ public class createCategoryDetailsImplementation implements CategoryService {
             return ResponseEntity.ok().body(new ResponseDTO("Attachment list created."));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(new ResponseDTO("Problem While creation"));
+        }
+    }
+
+    public ResponseEntity<ResponseDTO> getCategoryService(){
+        try {
+            Optional<List> getCategoryData = Optional.of(categoryRepository.findAll());
+            System.out.println("getCategoryData===>"+getCategoryData);
+            if(getCategoryData.isPresent()){
+                ResponseDTO responseData = new ResponseDTO();
+                responseData.setData(getCategoryData.get());
+                return ResponseEntity.ok().body(responseData);
+            }
+            return ResponseEntity.badRequest().body(new ResponseDTO(null));
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+
+//            ResponseDTO errorMessage = new ResponseDTO();
+//            errorMessage.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+//            errorMessage.setMessage("An internal server error occured");
+//            return ResponseEntity.internalServerError().body(new ResponseDTO(null));
+
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

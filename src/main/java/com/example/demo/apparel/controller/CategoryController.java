@@ -7,10 +7,7 @@ import com.example.demo.apparel.dto.ResponseDTO;
 import com.example.demo.apparel.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -27,6 +24,11 @@ public class CategoryController {
     @PostMapping("/createCategoryList")
     public ResponseEntity<ResponseDTO> createCategoryList(@RequestBody CreateCategoryListDTO createCategoryList){
         return categoryService.createCategoryListDetails(createCategoryList);
+    }
+
+    @GetMapping("/getCategory")
+    public ResponseEntity<ResponseDTO> getCategoryController(){
+        return categoryService.getCategoryService();
     }
 
 }

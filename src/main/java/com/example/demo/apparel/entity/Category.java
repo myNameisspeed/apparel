@@ -49,6 +49,6 @@ public class Category {
     @Column(name ="isDeleted")
     private int isDeleted =0;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+        @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Subcategory> subcategories;
 }
