@@ -1,42 +1,36 @@
 package com.example.demo.apparel.entity;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Entity
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Customerdetail" , uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniqueKey"}))
+@NoArgsConstructor
+@Entity
+@Table(name = "tbl_entitytype",uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniqueKey"}))
 
-public class CustomerDetails {
+public class EntityType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "uniqueKey", length = 40)
+    @Column(name = "uniqueKey", length = 40, nullable = false)
     private String uniqueKey;
 
-    @Column(name = "customerName", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "mobileNumber" , nullable = false)
-    private String mobileNumber;
-
-    @Column(name = "password" )
-    private String password=null;
 
     @Column(name ="createdBy",nullable = false)
     private Integer createdBy ;
 
-    @Column(name ="createdOn" , nullable = false)
+    @Column(name ="createdOn" ,nullable = false)
     private LocalDateTime createdOn ;
 
     @Column(name ="updatedBy")
@@ -47,5 +41,8 @@ public class CustomerDetails {
 
     @Column(name ="isDeleted")
     private int isDeleted =0;
+
+    @OneToMany(mappedBy ="entityType",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Attachment> attachments;
 
 }

@@ -14,55 +14,57 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Productitem", uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniqueKey"}))
-public class Productitem {
-
+@Table(name = "productitem" , uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniquekey"}))
+public class ProductItem {
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
     @Column(name = "uniqueKey", length = 40, nullable = false)
     private String uniqueKey;
 
-    @ManyToOne()
-    @JoinColumn(name = "productDetailId", nullable = false)
-    private Productdetails productDetailId;
+    @ManyToOne
+    @JoinColumn(name = "categoryAndSubCategoryMappingId")
+    private ProductDetail productDetail;
 
-    @Column(name = "colorRefId", columnDefinition = "int default null")
-    private Integer colorRefId;
+    @Column(name ="colorRefId")
+    private Integer colorRefId =null;
 
-    @Column(name = "sizeRefId",nullable = true)
-    private Integer sizeRefId;
+    @Column(name ="sizeRefId")
+    private Integer sizeRefId =null;
 
-    @Column(name="isStickered",columnDefinition = "int default 0")
-    private  Integer isStickered;
+    @Column(name ="isStickered")
+    private Integer isStickered =null;
 
-    @Column(name = "statusRefId", nullable = true)
-    private Integer statusRefId;
+    @Column(name ="statusRefId")
+    private Integer statusRefId =null;
 
-    @Column(name = "productId", nullable = false)
-    private String productId;
+    @Column(name ="productId" ,nullable = false)
+    private String productId ;
 
-    @Column(name = "topPicks", nullable = true)
-    private Integer topPicks;
+    @Column(name ="topPicks")
+    private Integer topPicks =0;
 
-    @Column(name = "hotNew", nullable = true)
-    private Integer hotNew;
+    @Column(name ="hotNew")
+    private Integer hotNew =0;
 
-    @Column(name = "isActive", columnDefinition = "int default 1")
-    private Integer isActive;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "createdOn")
-    private LocalDateTime createdOn;
+    @Column(name ="isActive")
+    private int isActive =1;
 
-    @Column(name="updatedBy", nullable = true)
-    private Integer updatedby;
+    @Column(name ="createdBy",nullable = false)
+    private Integer createdBy ;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updatedOn")
-    private LocalDateTime updatedOn;
+    @Column(name ="createdOn" ,nullable = false)
+    private LocalDateTime createdOn ;
 
-    @Column(name = "isDeleted", columnDefinition = "int not null default 0")
-    private Integer isDeleted;
+    @Column(name ="updatedBy")
+    private Integer updatedBy =null ;
+
+    @Column(name ="updatedOn")
+    private LocalDateTime updatedOn =null;
+
+    @Column(name ="isDeleted")
+    private int isDeleted =0;
 }

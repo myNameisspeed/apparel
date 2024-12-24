@@ -14,23 +14,41 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "categoryandsubcategorymappping" , uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniqueKey"}))
-public class CategoryAndSubcategoryMappping {
-
+@Table(name = "productitem" , uniqueConstraints = @UniqueConstraint(columnNames = {"id","uniquekey"}))
+public class ProductItem {
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "uniqueKey", length = 40, nullable = false)
     private String uniqueKey;
 
     @ManyToOne
-    @JoinColumn(name = "categoryid" , nullable = false)
-    private Category category;
+    @JoinColumn(name = "categoryAndSubCategoryMappingId")
+    private ProductDetail productDetail;
 
-    @ManyToOne
-    @JoinColumn(name = "subcategoryid" , nullable = false)
-    private Subcategory subcategory;
+    @Column(name ="colorRefId")
+    private Integer colorRefId =null;
+
+    @Column(name ="sizeRefId")
+    private Integer sizeRefId =null;
+
+    @Column(name ="isStickered")
+    private Integer isStickered =null;
+
+    @Column(name ="statusRefId")
+    private Integer statusRefId =null;
+
+    @Column(name ="productId" ,nullable = false)
+    private String productId ;
+
+    @Column(name ="topPicks")
+    private Integer topPicks =0;
+
+    @Column(name ="hotNew")
+    private Integer hotNew =0;
+
 
     @Column(name ="isActive")
     private int isActive =1;
