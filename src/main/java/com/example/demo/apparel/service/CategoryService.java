@@ -6,8 +6,8 @@ import com.example.demo.apparel.dto.ResponseDTO;
 import org.springframework.http.ResponseEntity;
 
 public interface CategoryService {
-    ResponseEntity<ResponseDTO> createCategoryDetails(CreateCategoryDTO createCategory) ;
-    ResponseEntity<ResponseDTO> createCategoryListDetails(CreateCategoryListDTO createCategoryList);
+    public ResponseEntity<ResponseDTO> createCategoryDetails(CreateCategoryDTO createCategory) ;
+    public ResponseEntity<ResponseDTO> createCategoryListDetails(CreateCategoryListDTO createCategoryList);
 
-    ResponseEntity<ResponseDTO> getCategoryService();
+    public ResponseEntity<ResponseDTO> getCategoryService();
 }
